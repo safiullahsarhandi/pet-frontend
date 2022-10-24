@@ -107,7 +107,6 @@ useHead({
 });
 </script>
 <style scoped>
-@import 'vue3-autocomplete/dist/vue3-autocomplete.css'
 html {
   scroll-behavior: smooth; /* set scroll-behaviour to smooth here */
 }
