@@ -221,7 +221,7 @@ import * as yup from 'yup';
 import { useCategoryStore } from '~~/stores/category';
 import { donate } from '~~/services/pet';
 
-const {fetch,data} = useApi(()=> getGeneralData()); 
+const {data} = useApi(()=> getGeneralData()); 
 const store = useCategoryStore();
 const {getThumbnail} = useFileReader();
 const {notification} = useHelper();
@@ -232,9 +232,8 @@ const images = ref([]);
 
 const arrayValidator = (value)=> {
   const filteredValues = value?.filter(Boolean);
-  console.log(filteredValues);
-    return !(filteredValues == undefined || filteredValues.length == 0);
-  };
+  return !(filteredValues == undefined || filteredValues.length == 0);
+};
 const schema = yup.object().shape({
   name : yup.string().required(),
   category_id : yup.string().required().label('category'),
@@ -267,6 +266,9 @@ const onSubmit = async (values)=> {
     values.trainings = values.trainings?.filter(Boolean)
     let {message} = await donate(values);
     notification(message);
+    navigateTo({
+      name : 'account-ads'
+    })
   } catch (error) {
     let {errors,message} = error?.response?.data;
     if(message) notification(message,'error');
@@ -297,6 +299,5 @@ const setFiles = async (e)=> {
 
 onBeforeMount(()=>{
   store.get({type : ['pet','other_pet'],});
-  fetch();
 });
 </script>

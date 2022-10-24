@@ -41,7 +41,6 @@
         </li>
       </ul>
       <ul class="left-info">
-        <!-- {{data?.owner}} -->
         <li v-if="owner?.phone_number" class="nav-item icon-red">
           <a :href="`tel:${owner?.phone_number}`"
             ><i class="fa fa-phone"></i>{{ owner?.phone_number }}</a

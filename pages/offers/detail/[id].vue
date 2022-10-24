@@ -125,7 +125,6 @@ const validateAccess = async ()=> {
 };
 
 onBeforeMount(() => {
-  fetch();
   validateAccess();
 });
 </script>

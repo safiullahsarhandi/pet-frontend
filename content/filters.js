@@ -4,12 +4,12 @@ export const typeFilters = {
     key: 'type',
     placeholder: 'Select...',
     options: [{
-        key : 'ad',
+        key : 'ad_adoption',
         label : 'Adopt a Pet', 
     },
     {
-        key : 'product',
-        label : 'Shop Products', 
+        key : 'ad_purchase',
+        label : 'Purchase a Pet', 
     }
 ],
 };
@@ -82,3 +82,50 @@ export const trainings = {
 };
 
 
+
+export const search = {
+    label: '',
+    type : 'field',
+    attrs : {
+        type : 'text',
+    },
+    icon : 'fa fa-search',
+    key: 'search',
+    placeholder: 'Search Here....',
+};
+
+export const range = {
+    label: `<span>Maximum Distance</span><span class="text-secondary">250 km</span>`,
+    type : 'field',
+    multiple : true,
+    key: 'distance',
+    attrs : {
+        min : 10,
+        max : 250,
+        type : 'range',
+        class: 'form-range w-100',
+        id : "distance",
+    },
+};
+
+
+export const countries = {
+    label: 'Country',
+    key: 'country_id',
+    placeholder: 'Select',
+    options: [],
+};
+
+export const states = {
+    label: 'State',
+    key: 'state_id',
+    placeholder: 'Select',
+    options: [],
+};
+
+export const cities = {
+    label: 'City',
+    key: 'city_id',
+    placeholder: 'Select',
+    options: [],
+};

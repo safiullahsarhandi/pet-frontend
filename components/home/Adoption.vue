@@ -30,10 +30,7 @@
 <script setup>
 import { getPets } from "~~/services/pet";
 
-const {fetch,data} = useApi((page = 1)=> getPets({page,per_page : 4,type : 'adoption'}));
-const {toggleWishlist} = useWishlist(data,'data.*'); 
-onBeforeMount(()=> {
-  fetch();
-});
+const {data} = useApi((page = 1)=> getPets({page,per_page : 4,type : 'adoption'}));
+const {toggleWishlist} = useWishlist(data,'data.*');
 </script>
 <style scoped></style>

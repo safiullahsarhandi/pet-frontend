@@ -55,9 +55,5 @@ const fields  = computed(()=> {
     return type == 'pet'?purchaseOrders:(type == 'offers'?adoptionOrders:shopOrders);
 });
 const {fetch,data} = useApi((page = 1)=> type == 'offers'?getOffers({page,...filterValues.value}):getOrders({page,...filterValues.value,type}));
-
-onBeforeMount(()=> {
-    fetch(1);
-});
 const {setFilter,filterValues} = useTableFilter(fetch);
 </script>

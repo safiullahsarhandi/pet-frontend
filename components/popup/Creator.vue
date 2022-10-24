@@ -21,6 +21,9 @@
           </button>
         </div>
         <div class="pop-up-content px-md-4 px-3">
+          <div v-if="showIcon" class="text-center">
+            <img src="/assets/images/popup-header.png" alt="Login" draggable="false" class="mw-100 mb-4"/>
+          </div>
           <h4 class="mb-3 text-center">{{title}}</h4>
           <Form :initial-values="{...data}" ref="form" @submit="onSubmit" :validation-schema="validationSchema">
             <div :key="fieldIndex" v-for="(field, fieldIndex) in fields" class="form-group">
@@ -163,6 +166,7 @@ watch(
 );
 
 const onSubmit = async (values) => {
+  console.log(props.additionalFields);
   try {
     let { message } = await create(props.apiUrl, {
       ...values,
@@ -171,8 +175,8 @@ const onSubmit = async (values) => {
     notification(message);
     toggleModal(false);
   } catch (error) {
-    let { errors, message } = error;
-    notification(message);
+    let { errors, message } = error?.response?.data;
+    notification(message,'error');
     if (errors?.length > 0) {
       form.value.setErrors(errors);
     }

@@ -60,7 +60,6 @@
                                                 <h3 class="mb-0">{{data?.name}}</h3>
                                             </div>
                                             <div class="order-id">
-                                                <p class="text-theme-primary mb-1 f-14">Order ID: #{{data?.id}}</p>
                                             </div>
                                             <div class="date-time-box align-items-center d-flex flex-wrap gap-15 my-2">
                                                 <div class="date">
@@ -72,10 +71,10 @@
                                                 </div>
                                             </div>
                                             <div class="mile-box">
-                                                <p class="mb-0">10 miles away</p>
+                                                <p class="mb-0">{{(data?.owner?.distance >= 0)? `${data?.owner?.distance} miles away`: ''}} </p>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 text-md-right">
+                                        <div v-if="data?.type == 'purchase'" class="col-md-4 text-md-right">
                                             <h4 class="mb-0 text-theme-primary">${{data?.payable_cost}}</h4>
                                         </div>
                                     </div>
@@ -195,8 +194,15 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <div class="reportAd text-center">
-                                                <p class="text-danger"><i class="fa fa-warning pr-1"></i> Report This Ad</p>
+                                            <div v-if="!data?.report?.id" class="reportAd text-center">
+                                                <p><a @click="showCreatorPopup('/v1/reports', '',{})" class="text-danger" href="javascript:void()" data-toggle="modal" data-target="#reportAd"><i class="fa fa-warning pr-1"></i> Report Your Ad</a></p>
+                                            </div>
+                                            <div v-if="data?.report?.id" class="reportAd">
+                                                <strong for="">Your Reported Reason:</strong>
+                                                <p>{{data?.report?.detail}}</p>
+
+                                                <strong for="">Admin Remarks On Report:</strong>
+                                                <p>{{data?.report?.admin_note || 'Waiting for remarks'}}</p>
                                             </div>
                                             <div v-if="data?.type == 'adoption'" class="viewPin text-center mt-4">
                                                 <nuxt-link v-if="data?.has_offered" :to="{name : `offers-detail-id`,params : {id : data?.offer?.id }}" class="secondary-theme-button shadow btn bg-brown py-2" id="bgAdopted">View Offer!</nuxt-link>
@@ -217,9 +223,24 @@
                 </div>
             </div>
         </div>
+        <client-only>
+            <popup-creator
+                :additional-fields="{reportable_id : data?.id,reportable_type : 'ad'}"
+                :title="popupParams.title"
+                :active="popupParams.active"
+                :fields="popupParams.fields"
+                :api-url="popupParams.apiUrl"
+                :validation-schema="popupParams.schema"
+                :data="popupParams.data"
+                @closed="hidePopup"
+                submit-btn-text="Report"
+                :show-icon="true"
+            ></popup-creator>
+        </client-only>
     </section>
 </template>
 <script setup>
+import * as yup from 'yup';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 import { purchaseOrders,adoptionOrders, shopOrders } from '~~/content/tableHeader';
 import { getOffer } from '~~/services/offer';
@@ -236,6 +257,13 @@ const settings = {
   itemsToScroll: 1,
   wrapAround: true,
 };
+const {
+  showCreatorPopup,
+  hideCreatorPopup,
+  popupParams,
+  setSchema,
+  setFields,
+} = useCreatorPopup();
 
 const pageHeading = computed(()=> {
         return type == 'adoption'?'Adopt Pet Details':'Purchase Pet Details';
@@ -247,7 +275,7 @@ const statusDetail = computed(()=> (
         ((data.value?.status == 'active')?'Available for Sale':(data.value?.status == 'sold'?'Sold Out':data.value?.status))
         )
 );
-const {fetch,data} = useApi(()=> getPet(route.params.id,{type}));
+const {fetch,data} = useApi(()=> getPet(route.params.id,{type,...filterValues.value }));
 const {setFilter,filterValues} = useTableFilter(fetch);
 const {toggleWishlist} = useWishlist(data);
 
@@ -263,8 +291,23 @@ const trainings = computed(()=> {
 });
 const owner = computed(()=> data.value.owner);
 
-onBeforeMount(()=> {
+const hidePopup = ()=> {
+    hideCreatorPopup();
     fetch();
-});
+};
 
+onBeforeMount(() => {
+  setFields([
+    {
+      label: "Reason",
+      name: "detail",
+      placeholder: "Enter Here",
+      type : 'textarea',
+      id : 'reason',
+    },
+  ]);
+  setSchema({
+    detail: yup.string().required().label('reason'),
+  });
+});
 </script>

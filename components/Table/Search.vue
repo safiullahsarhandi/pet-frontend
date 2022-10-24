@@ -93,7 +93,6 @@
   <!-- Filters Ends Here -->
 </template>
 <script setup>
-import { onBeforeMount, ref, watch } from "vue";
 const emit = defineEmits(["on-change"]);
 const searchValue = ref(null);
 const entries = ref(10);

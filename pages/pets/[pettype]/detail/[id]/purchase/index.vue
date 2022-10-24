@@ -155,7 +155,7 @@ const onSubmit = async (values) => {
   } catch (error) {
     console.log(error);
     let { errors, message } = error;
-    if (message) notification(message, "error");
+    if ( message ) notification(message, "error");
     if (errors) form.value.setErrors(errors);
   }
 };

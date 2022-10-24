@@ -8,16 +8,33 @@
         @cancelled="() => handler('onCancel')"
         :message="confirmPopupParams?.message"
         :title="confirmPopupParams?.title"
+        :confirm-btn-text="confirmPopupParams?.confirmBtnText"
+        :cancel-btn-text="confirmPopupParams?.cancelBtnText"
         />
-    </client-only>
-  </NuxtLayout>
-</template>
+        <popup-success
+        @closed="successPopupParams.visibility = false"
+        :active="successPopupParams?.visibility"
+        :title="successPopupParams?.title"
+        :message="successPopupParams?.message"
+        />
+      </client-only>
+    </NuxtLayout>
+  </template>
 <script setup>
 import event from "~~/utils/event";
+import { useLocationStore } from "~~/stores/location";
 
 const confirmPopupParams = ref({
   visibility: false,
 });
+const successPopupParams = ref({
+  visibility: false,
+});
+const locationStore = useLocationStore();
+const {getLocation} = useLocation();
+const route = useRoute();
+const nuxtApp = useNuxtApp();
+
 const handler = (callback) => {
   confirmPopupParams.value[callback]();
   confirmPopupParams.value.visibility = false;
@@ -26,23 +43,30 @@ const handler = (callback) => {
 const showConfirmPopupHandler = (event) => {
   confirmPopupParams.value = event.detail;
 };
+const showSuccessPopupHandler = (event) => {
+  successPopupParams.value = event.detail;
+};
 
-onBeforeMount(() => {
+onMounted(async ()=> {
+});
+onBeforeMount(async () => {
+  try {
+          let {coords} = await getLocation(); 
+          locationStore.set({lat : coords.latitude,lng : coords.longitude });
+  } catch (error) {
+          console.log(error);
+  }
   // subscribing custom event
   event.subscribe("showConfirmPopup", showConfirmPopupHandler);
+  event.subscribe("showSuccessPopup", showSuccessPopupHandler);
 });
-const route = useRoute();
 const title = ref("My App");
 const description = ref("My amazing Nuxt app");
-const nuxtApp = useNuxtApp();
 
-nuxtApp.hook("render:html", () => {
-  console.log("page:finish");
-  window.scrollTo(0, 0);
-});
 watch(route, () => {
   window.scrollTo(0, 0);
 });
+
 useHead({
   meta: [
     { charset: "utf-8" },
@@ -83,6 +107,7 @@ useHead({
 });
 </script>
 <style scoped>
+@import 'vue3-autocomplete/dist/vue3-autocomplete.css'
 html {
   scroll-behavior: smooth; /* set scroll-behaviour to smooth here */
 }

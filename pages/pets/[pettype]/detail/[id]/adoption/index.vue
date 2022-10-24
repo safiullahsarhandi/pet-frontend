@@ -59,13 +59,10 @@ import * as yup from 'yup';
 import { getGeneralData } from '~~/services/general';
 import { createOffer } from '~~/services/offer';
 import { useCategoryStore } from '~~/stores/category';
-const {fetch, data} = useApi(()=> getGeneralData());
+const {data} = useApi(()=> getGeneralData());
 const {notification} = useHelper();
 const route = useRoute();
 const schema = ref(yup.object());
-onBeforeMount(()=> {
-    fetch();
-});
 
 const formFields = computed(()=> data.value.inquiryForm); 
 watch(formFields,(val)=> {

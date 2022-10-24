@@ -78,9 +78,6 @@
 import { offers as fields } from "~~/content/tableHeader";
 import { getOffers } from "~~/services/offer";
 let { fetch, data } = useApi((page = 1) => getOffers({ page,pet_id : route.params.id }));
-let { setFilter, filterValues } = useTableFilter(data);
+let { setFilter, filterValues } = useTableFilter(fetch);
 const route = useRoute();
-onBeforeMount(() => {
-  fetch();
-});
 </script>

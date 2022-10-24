@@ -1,8 +1,8 @@
 <template>
         <div>
             <client-only>
-            <navbar/>
-        </client-only>
+                <navbar/>
+            </client-only>
             <slot></slot>
             <client-only>
                 <Footer/>
@@ -10,4 +10,6 @@
         </div>
 </template>
 
-<style scoped></style>
+<script setup>
+
+</script>

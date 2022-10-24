@@ -13,8 +13,8 @@
                 <p class="mb-0">{{message}}</p>
             </div>
             <div class="loginBtn text-center mt-3 d-flex justify-content-center gap-15">
-                <button @click="handleConfirm()" class="secondary-theme-button shadow btn bg-brown">Yes</button>
-                <button @click="handleCancel()" class="secondary-theme-button shadow btn borderBtn">No</button>
+                <button @click="handleConfirm()" class="secondary-theme-button shadow btn bg-brown">{{confirmBtnText}}</button>
+                <button @click="handleCancel()" class="secondary-theme-button shadow btn borderBtn">{{cancelBtnText}}</button>
             </div>
             </div>
         </div>
@@ -36,6 +36,14 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  cancelBtnText : {
+    type : String,
+    default : 'No',
+  },
+  confirmBtnText : {
+    type : String,
+    default : 'Yes',
+  }
 });
 const emit = defineEmits(["cancelled", "confirmed"]);
 

@@ -80,6 +80,43 @@ export const useHelper = () => {
       if (callNow) func.apply(context, args);
     };
   };
+  const parseData = (data,structure)=> {
+          let splittedStructure = structure.split('.');
+          
+          splittedStructure.forEach(element => {
+              if(/^[0-9]$/.test(element))
+                element = parseInt(element);
+                if(data){
+                  data = data[element] || null;
+                }
+          });    
+      return data;
+  }; 
+  const pluck = (params = {},requiredParams = [])=> {
+    params = JSON.parse( JSON.stringify(params) );
+    let filteredKeys = {};
+    requiredParams.forEach((item)=> {
+      if(item in params){
+        filteredKeys[item] =  params[item];
+      }
+      let isDeep = item.includes('.');
+      if(isDeep){
+        let structure = item.split('.');
+        let [firstKey] = structure;
+        structure.splice(0,1)
+        let lastKey = structure[structure.length - 1];
+        structure = structure.join('.');
+        filteredKeys[lastKey] =  parseData(params[firstKey],structure);
+      }
+    });
+    return filteredKeys;
+  };
+
+  const getCardMasked = (number)=> {
+    let starting = number.slice(0,4);
+    let ending = number.split('').reverse().join('').slice(0,4);
+    return `${starting}**********${ending}`
+  };
 
   return {
     buildFormData,
@@ -95,5 +132,7 @@ export const useHelper = () => {
     getAccessToken,
     setAccessToken,    
     debounce,
+    pluck,
+    getCardMasked,
   }
 }

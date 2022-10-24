@@ -48,7 +48,7 @@
     const route = useRoute();
     let type = 'purchase';
     const {fetch,data} = useApi((page = 1)=> getPets({page,type,owner : shelter?.id,...filterValues.value}));
-    const {fetch: fetchGeneralData,data : general} = useApi(()=> getGeneralData());
+    const {data : general} = useApi(()=> getGeneralData());
     const {toggleWishlist} = useWishlist(data,'data.*'); 
     const {setFilter,filterValues} =  useTableFilter(fetch);
     const filters = ref([
@@ -127,8 +127,5 @@
             
             store.get({type : ['pet']});
         }
-        fetch(1);
-        fetchGeneralData();
-        // filter.value.options = categoryOptions;
     });
     </script>

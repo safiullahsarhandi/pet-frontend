@@ -44,7 +44,7 @@
 <script setup>
 import {ads as fields} from '~~/content/tableHeader';
 import { getAds } from '~~/services/ad';
-const {fetch,data} = useApi((page = 1)=> getAds({page, type : 'adoption',},'/account'));
+const {data} = useApi((page = 1)=> getAds({page, type : 'adoption',},'/account'));
 
 const getAdoptionStatus = (status)=> {
     if(status == 'adopted')
@@ -59,8 +59,5 @@ const getAdoptionColor = (status)=> {
     else
         return 'text-theme-primary';
 };
-onBeforeMount(()=> {
-    fetch();
-});
 </script>
 

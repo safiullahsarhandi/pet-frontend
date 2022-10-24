@@ -76,7 +76,9 @@ const store = useCategoryStore();
 
 const categories = computed(()=> store.categories);
 onBeforeMount(()=> {
+    if(store.categories.length == 0){
         store.get({type : ['pet','other_pet']});
+    }
 });
 const petsCategories = computed(()=> categories.value.filter((item)=> item.type === 'pet'));
 const otherPetsCategories = computed(()=> categories.value.filter((item)=> item.type === 'other_pet'));

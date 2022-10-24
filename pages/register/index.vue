@@ -56,7 +56,7 @@
                         id="phone"
                         v-slot="{field}"
                       >
-                      <vue-tel-input @country-changed="getPhoneData" v-bind="field" mode="international"></vue-tel-input>
+                      <vue-tel-input v-bind="field"  @country-changed="getPhoneData" defaultCountry="US" ref="phoneInput" :key="refreshPhoneInput" mode="international"></vue-tel-input>
                       </Field>
                       <!-- <Field
                       /> -->
@@ -68,14 +68,17 @@
                       <label for="location">
                         Location <span class="required">*</span>
                       </label>
-                      <Field
-                        name="address"
-                        type="text"
-                        placeholder="Enter City, State"
-                        class="form-control rounded-pill"
-                        id="location"
-                      />
-                      <error-message name="location" />
+                      
+                        <GMapAutocomplete
+                        :value="address"
+                        placeholder="Enter Address"
+                        @input="updateValue"
+                        @place_changed="setPlace"
+                        class="form-control rounded-pill bg-light"
+                        >
+                      </GMapAutocomplete>
+                      <input type="hidden" v-model="address"/>
+                      <error-message name="address"/>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -121,7 +124,7 @@
                 </div>
                 <div class="loginBtn text-center my-4">
                   <button
-                  type="submit"
+                    type="submit"
                     class="secondary-theme-button shadow btn bg-brown py-2" 
                   >
                     Sign Up
@@ -148,12 +151,13 @@
 <script setup>
 import { VueTelInput } from 'vue3-tel-input';
 import { register } from "~~/services/auth";
-import { Form, Field, ErrorMessage } from "vee-validate";
+import { Form, Field, ErrorMessage, useField, useForm } from "vee-validate";
 import * as yup from "yup";
 
 const { switchType, notification } = useHelper();
 const form = ref(null);
-const countryCode = ref(null);
+const geoLocation = ref({});
+const countryCode = ref({});
 const schema = yup.object({
   name: yup.string().required(),
   phone: yup.string().required(),
@@ -169,12 +173,34 @@ const schema = yup.object({
       "password confirmation does not match."
     ),
 });
+const {useFieldModel,setFieldValue} = useForm(form);
+let [address] = useFieldModel(['address']);
+
+const setPlace = (place)=> {
+    address = place.formatted_address;
+    form.value.setFieldValue('address',address);
+    let { location } = place.geometry;
+    geoLocation.value = {lat : location.lat(),lng : location.lng()};
+  }
+  const updateValue = async (e)=> {
+    if(!e.target.value){
+      address = '';
+      form.value.setFieldValue('address',address);
+
+    }
+}
 
 const router = useRouter();
 
 const onSubmit = async (values) => {
   try {
-    let { message } = await register({...values,country_code : countryCode.value});
+    let { message } = await register({
+      ...values,
+      country_code : `+${countryCode.value.dialCode}`,
+      country_iso : countryCode.value.iso2,
+      ...geoLocation.value, 
+      address,
+    });
     notification(message);
     navigateTo('/login');
   } catch (error) {
@@ -183,6 +209,6 @@ const onSubmit = async (values) => {
   }
 };
 const getPhoneData = (data)=> {
-  countryCode.value = `+${data.dialCode}`;
+  countryCode.value = data;
 };
 </script>

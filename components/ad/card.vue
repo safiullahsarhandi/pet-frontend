@@ -60,14 +60,7 @@
             </div>
             <div class="description-box flex-grow-1">
                 <p class="mb-0">{{address}}</p>
-            </div>
-        </div>
-        <div v-if="distance"  class="d-flex gap-15">
-            <div class="icon-box flex-shrink-0">
-                <img src="/assets/images/pin.png" alt="Pin" draggable="false" />
-            </div>
-            <div class="description-box flex-grow-1">
-                <p class="my-1">{{distance}} away</p>
+                <p v-if="distance" class="my-1">{{distance}} away</p>
             </div>
         </div>
         <slot></slot>

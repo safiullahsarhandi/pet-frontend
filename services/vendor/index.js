@@ -1,6 +1,8 @@
-export const getRates = async (params = {})=> {
+import axios from "axios";
+
+export const getVendors = async (params = {}) => {
     try {
-        let {data} = await axios.get('/commission',{params});
+        let {data} = await axios.get('/v1/vendors',{params});
         return data;
     } catch (error) {
         console.log(error);
@@ -8,9 +10,9 @@ export const getRates = async (params = {})=> {
     }
 };
 
-export const updateRateStatus = async (id,status)=> {
+export const getVendor = async (id,params = {}) => {
     try {
-        let {data} = await axios.post(`/plans/${id}/${status}`);
+        let {data} = await axios.get(`/v1/vendors/${id}`,{params});
         return data;
     } catch (error) {
         console.log(error);

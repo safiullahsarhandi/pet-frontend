@@ -16,13 +16,13 @@
                         <client-only>
                             <div :key="wishlistIndex" v-for="(wishlist,wishlistIndex) in data?.data" class="col-md-3 mb-3">
                                 <ad-card 
-                                @on-wishlist="toggleWishlist(wishlist.wishable_id,wishlistIndex)"
-                                :image="wishlist?.wishable?.file?.file_url"
-                                :name="wishlist?.wishable?.name"
-                                :address="wishlist?.wishable?.owner?.address"
-                                :distance="wishlist?.wishable?.distance"
-                                :status="wishlist?.wishable?.status == 'active'?'available':wishlist?.wishable?.status"
-                                :is-wishlist="true"
+                                    @on-wishlist="toggleWishlist(wishlist.wishable_id,wishlistIndex)"
+                                    :image="wishlist?.wishable?.file?.file_url"
+                                    :name="wishlist?.wishable?.name"
+                                    :address="wishlist?.wishable?.owner?.address"
+                                    :distance="wishlist?.wishable?.distance"
+                                    :status="wishlist?.wishable?.status == 'active'?'available':wishlist?.wishable?.status"
+                                    :is-wishlist="true"
                                 >
                                 <p class="mb-0">Number of Offers: {{wishlist?.wishable?.offers_count}}</p>
                                 </ad-card>
@@ -44,13 +44,8 @@ import { getWishlists } from '~~/services/wishlist';
 import {typeFilters} from '~~/content/filters'; 
 import { getCategories } from '~~/services/category';
 const route = useRoute();
-const type = 'ad';
+const type = 'ad_adoption';
 const {fetch,data} = useApi((page = 1)=> getWishlists({page,type,...filterValues.value}));
 const {toggleWishlist} = useWishlist(data,'data.*',true);
-
-
-onBeforeMount(()=> {
-    fetch(1);
-});
 const {setFilter,filterValues} = useTableFilter(fetch);
 </script>

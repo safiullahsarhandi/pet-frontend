@@ -5,8 +5,10 @@
     </div>
     <div class="filter-feilds">
         <div :key="filterIndex" v-for="(filter,filterIndex) in filters" class="form-group">
-          <label for="petCategory"> {{filter?.label}} </label>
+          <label class="form-label d-flex justify-content-between align-items-center" v-if="filter?.label" for="petCategory" v-html="filter?.label"></label>
+          <!-- if filter type is field then show select otherwise input will be shown -->
           <select
+            v-if="filter?.type != 'field'"
             name="pet-category"
             id="petCategory"
             @change="emit('on-change', { [filter.key]: $event.target.value })"
@@ -20,6 +22,18 @@
                 {{ option?.label }}
             </option>
           </select>
+          <div v-else class="form-group">
+              <div class="position-relative">
+                  <input 
+                    v-model="filteredData[filter.key]" 
+                    @input="immediate || !filteredData[filter.key]?emit('on-change', { [filter.key]: $event.target.value }):''" 
+                    v-bind="filter?.attrs" 
+                    :placeholder="filter?.placeholder" 
+                    :class="(!filter?.attrs?.class)?'form-control rounded-pill':''"
+                  />
+                  <button type="button" class="search-btn text-secondary"><i :class="filter?.icon"></i></button>
+              </div>
+          </div>
         </div>
         <!-- advance filter box  -->
         <div v-show="!!showAdvanced">
@@ -57,21 +71,28 @@
           <!-- add type  -->
         </div>
         <button
+          v-if="advancedFilters?.length > 0"
             @click="showAdvanced = !showAdvanced"
           class="advanceFilter border-0 bg-white text-theme-primary"
           type="button"
         >
           <i :class="{'fa-plus-circle': (!showAdvanced),'fa-minus-circle' : showAdvanced}" class="fa pr-2"></i>Advance Filter
         </button>
+        <div v-if="!immediate" class="text-center">
+            <button @click="emitValues" class="secondary-theme-button shadow btn bg-brown" type="button">Apply</button>
+        </div>
     </div>
   </div>
 </template>
 <script setup>
 const showAdvanced = ref(false);
 const filteredData = ref({
-  
 });
 const props = defineProps({
+    immediate : {
+      type : Boolean,
+      default : true,
+    },
     filters : {
         type : Array,
         default : ()=> ([]),
@@ -84,13 +105,19 @@ const props = defineProps({
 });
 const emit = defineEmits(["on-change"]);
 
+
+const emitValues = ()=> {
+  emit('on-change',filteredData.value);
+};
+
+// set filter keys in local state ref() in order to call them on demand if immediate is false
 watch(()=> props.filters,(value)=> {
   let keys = {};
   value.forEach((item)=> {
     keys[item.key] = (!item.multiple)? null: [];
   });
   filteredData.value = {...filteredData.value,...keys};
-},{deep : true,});
+},{deep : true,immediate : true});
 watch(()=> props.advancedFilters,(value)=> {
   let keys = {};
   
@@ -98,7 +125,7 @@ watch(()=> props.advancedFilters,(value)=> {
     keys[item.key] = (!item.multiple)? null: [];
   });
   filteredData.value = {...filteredData.value,...keys};
-},{deep : true,});
+},{deep : true,immediate : true});
 
 
 </script>

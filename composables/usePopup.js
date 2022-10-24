@@ -7,18 +7,32 @@ const popupsDefaultValue = {
         visibility : true,
         onConfirm : ()=> {},
         onCancel : ()=> {},
-    }    
+        confirmBtnText : 'Yes', 
+        cancelBtnText : 'No', 
+    },
+    success: {
+        title: null,
+        message: null,
+        visibility : true,
+        isError : false,
+    },
+    error: {
+        title: null,
+        message: null,
+        visibility : true,
+        isError : false,
+    },
 };
 export default function usePopup() {
-    // const dispatch = useDispatch();
-    
+        
     const successPopup = (params) => {
-        // dispatch(updateSuccessPopup(true,params));
+        let data = {...popupsDefaultValue.success};
+        Object.assign(data,params);
+        event.publish('showSuccessPopup',data);
     };
     const errorPopup = (params)=> {
         params.isError = true;
-        // dispatch(updateSuccessPopup(true,params));
-      };
+    };
     const confirmPopup = (params = {})=> {
         let data = {...popupsDefaultValue.confirm};
         Object.assign(data,params);

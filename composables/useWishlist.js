@@ -88,7 +88,7 @@ export default function useWishlist(data,keyName = null,removable = false){
                 notification(message);
             } catch (error) {
                 console.log(error);
-                notification(error.message);
+                notification(error?.data?.message,'error');
             }
     };    
     return {

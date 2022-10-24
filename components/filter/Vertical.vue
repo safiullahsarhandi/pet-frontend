@@ -17,7 +17,7 @@
           <label class="flex-shrink-0 mb-md-0">
             {{primaryFilter?.label}}
           </label>
-          <select @change="emit('on-change', { [primaryFilter.key]: $event.target.value })"
+          <select v-if="primaryFilter.type != 'field'" @change="emit('on-change', { [primaryFilter.key]: $event.target.value })"
               name="pet-category"
               class="form-control rounded-pill serachFiled flex-shrink-0"
             >
@@ -30,13 +30,12 @@
                 {{ option?.label }}
               </option>
             </select>
-          <!-- <select
-           
-          >
-            <option value="">Select</option>
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-          </select> -->
+            <div v-else class="form-group">
+                <div class="position-relative">
+                    <input type="text" :placeholder="primaryFilter.placeholder" class="form-control rounded-pill" v-bind="primaryFilter?.attrs" id="password">
+                    <button type="button" class="search-btn text-secondary"><i :class="primaryFilter.icon"></i></button>
+                </div>
+            </div>
         </div>
       </div>
     </div>

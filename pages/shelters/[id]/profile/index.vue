@@ -10,9 +10,6 @@
 <script setup>
 import { getShelter } from "~~/services/shelter";
 
-const {fetch,data} = useApi(()=> getShelter(route.params.id));
+const {data} = useApi(()=> getShelter(route.params.id));
 const route = useRoute(); 
-onBeforeMount(()=> {
-    fetch();
-});
 </script>

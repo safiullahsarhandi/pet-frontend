@@ -239,8 +239,4 @@ const trainings = computed(()=> {
 });
 const owner = computed(()=> data.value.owner);
 
-onBeforeMount(()=> {
-    fetch();
-});
-
 </script>

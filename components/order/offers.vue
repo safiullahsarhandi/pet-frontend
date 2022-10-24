@@ -194,8 +194,18 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <div class="reportAd text-center">
-                                            <p class="text-danger"><i class="fa fa-warning pr-1"></i> Report This Ad</p>
+                                        <div v-if="!data?.pet?.report?.id" class="reportAd text-center">
+                                            <div class="reportAd text-center">
+                                                <p><a @click="showCreatorPopup('/v1/reports', '',{})" class="text-danger" href="javascript:void()" data-toggle="modal" data-target="#reportAd"><i class="fa fa-warning pr-1"></i> Report Your Ad</a></p>
+                                            </div>
+                                        </div>
+                                        <div v-if="data?.pet?.report" class="reportAd">
+                                            <div class="reportAd">
+                                                <strong>Your Reported Reason:</strong>
+                                                <p>{{data?.pet?.report?.detail}}</p>
+                                                <strong>Admin Remarks on Report:</strong>
+                                                <p>{{data?.pet?.report?.admin_note || 'Waiting for remarks'}}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -208,9 +218,24 @@
                 <card-owner :owner="data?.pet?.owner"/>
             </div>
         </div>
+        <client-only>
+            <popup-creator
+                :additional-fields="{reportable_id : data?.pet_id,reportable_type : 'ad'}"
+                :title="popupParams.title"
+                :active="popupParams.active"
+                :fields="popupParams.fields"
+                :api-url="popupParams.apiUrl"
+                :validation-schema="popupParams.schema"
+                :data="popupParams.data"
+                @closed="hidePopup"
+                submit-btn-text="Report"
+                :show-icon="true"
+            ></popup-creator>
+        </client-only>
     </div>
 </template>
 <script setup>
+import * as yup from 'yup';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 import { purchaseOrders,adoptionOrders, shopOrders } from '~~/content/tableHeader';
 import { getOffer } from '~~/services/offer';
@@ -222,6 +247,13 @@ const fields  = computed(()=> {
     return type == 'pet'?purchaseOrders:(type == 'offers'?adoptionOrders:shopOrders);
 });
 
+const {
+  showCreatorPopup,
+  hideCreatorPopup,
+  popupParams,
+  setSchema,
+  setFields,
+} = useCreatorPopup();
 
 const settings = {
   itemsToShow: 1,
@@ -244,7 +276,22 @@ const trainings = computed(()=> {
     return values?.join(',');
 });
 
-onBeforeMount(()=> {
+const hidePopup = ()=> {
+    hideCreatorPopup();
     fetch();
+}
+onBeforeMount(() => {
+  setFields([
+    {
+      label: "Reason",
+      name: "detail",
+      placeholder: "Enter Here",
+      type : 'textarea',
+      id : 'reason',
+    },
+  ]);
+  setSchema({
+    detail: yup.string().required().label('reason'),
+  });
 });
 </script>

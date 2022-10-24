@@ -30,6 +30,7 @@
                             :route="{name : 'pets-pettype-detail-id',params : {pettype : pet?.type, id : pet?.id } }"
                             />
                         </div>
+                        <no-record :data="data.data">0 Pets Found</no-record>
                     </div>
                 </div>
                <pagination :show-detail="true" :data="data" />
@@ -47,7 +48,7 @@ const store = useCategoryStore();
 const route = useRoute();
 let type = route.params.type;
 const {fetch,data} = useApi((page = 1)=> getPets({page,type,...filterValues.value}));
-const {fetch: fetchGeneralData,data : general} = useApi(()=> getGeneralData());
+const {data : general} = useApi(()=> getGeneralData());
 const {toggleWishlist} = useWishlist(data,'data.*'); 
 const {setFilter,filterValues} =  useTableFilter(fetch);
 const filters = ref([
@@ -122,12 +123,10 @@ const getStatus = (status)=> {
     return status == 'active'? 'Available':status;
 };
 onBeforeMount(()=> {
+    filterValues.value = {...filterValues.value,...route.query};
     if(store.categories.length == 0){
         
         store.get({type : ['pet']});
     }
-    fetch(1);
-    fetchGeneralData();
-    // filter.value.options = categoryOptions;
 });
 </script>

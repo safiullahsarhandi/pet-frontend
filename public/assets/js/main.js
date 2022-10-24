@@ -85,54 +85,12 @@ inputElements.forEach((ele, index) => {
 });
 
 
-
-// quantity selector 
-
-jQuery('.quantity-left-minus').click(function () {
-  var getQuantity = jQuery(this).next('input[type="number"]').val();
-  if (getQuantity > 1) {
-    jQuery(this).next('input[type="number"]').val(getQuantity - 1);
-  }
-});
-
-jQuery('.quantity-right-plus').click(function () {
-  var getQuantity = parseInt(jQuery(this).prev('input[type="number"]').val());
-  jQuery(this).prev('input[type="number"]').val(getQuantity + 1);
-});
-
 // remove cart items 
 
 jQuery('.removeProduct').click(function(){
   jQuery(this).parents('tr').remove();
 })
 
-// // #zip code 
-
-// jQuery('#zip').keyup(function(){
-//   var address = jQuery(this).val();
-//   if(address) {
-//       jQuery(this).parents('form').find('#continue').show();
-//   } else {
-//       jQuery(this).parents('form').find('#continue').hide();
-//   }
-// });
-
-
-jQuery('.showFileds').click(function(){
-  jQuery(this).parents('.wizard').hide();
-  jQuery(this).parents('.delivery-details').find('.showBox').show();
-  jQuery(this).parents('.delivery-details').find('.editBtn').show();
-});
-
-jQuery('.editBtn').click(function() {
-  jQuery(this).parents('.delivery-details').find('.wizard').show();
-  jQuery(this).parents('.delivery-details').find('.showBox').hide();
-  jQuery(this).hide();
-});
-
-jQuery('form > div:nth-child(3) .showFileds').click(function(){
-  jQuery('.submitButn').show();
-});
 
 // adopted btn 
 

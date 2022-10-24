@@ -45,8 +45,4 @@ const settings = {
   itemsToScroll: 0,
   wrapAround: false,
 };
-
-onBeforeMount(()=> {
-    fetch();
-});
 </script>
