@@ -58,7 +58,6 @@
     </div>
 </template>
 <script setup>
-import Autocomplete from 'vue3-autocomplete'
 import { Form,Field } from "vee-validate";
 import { useCategoryStore } from "~~/stores/category";
 import { getLocations } from '~~/services/general';
