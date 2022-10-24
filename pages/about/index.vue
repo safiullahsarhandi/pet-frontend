@@ -6,7 +6,7 @@
         <div class="col-md-12">
           <div class="page-banner">
             <img
-              src="assets/images/default.png"
+              src="/assets/images/default.png"
               alt="About Banner"
               class="mw-100"
               draggable="false"

@@ -23,7 +23,7 @@
             </div>
             <figure class="adjust-image">
               <img
-                src="assets/images/banerdog.png"
+                src="/assets/images/banerdog.png"
                 alt="Kathy Lewis Baby"
                 class="mw-100"
                 draggable="false"
@@ -34,7 +34,7 @@
             <div class="feature-header d-flex align-items-center gap-15">
               <h3 class="f-22">Kathy Lewis Baby</h3>
               <img
-                src="assets/images/gender-female.png"
+                src="/assets/images/gender-female.png"
                 alt="icon"
                 draggable="false"
                 class="mw-100"
@@ -44,7 +44,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/animal-shelter.png"
+                    src="/assets/images/animal-shelter.png"
                     alt="Animal Shelter"
                     draggable="false"
                   />
@@ -56,7 +56,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/pin.png"
+                    src="/assets/images/pin.png"
                     alt="Pin"
                     draggable="false"
                   />
@@ -90,7 +90,7 @@
             </div>
             <figure class="adjust-image">
               <img
-                src="assets/images/banerdog.png"
+                src="/assets/images/banerdog.png"
                 alt="Kathy Lewis Baby"
                 class="mw-100"
                 draggable="false"
@@ -101,7 +101,7 @@
             <div class="feature-header d-flex align-items-center gap-15">
               <h3 class="f-22">Kathy Lewis Baby</h3>
               <img
-                src="assets/images/gender-female.png"
+                src="/assets/images/gender-female.png"
                 alt="icon"
                 draggable="false"
                 class="mw-100"
@@ -111,7 +111,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/animal-shelter.png"
+                    src="/assets/images/animal-shelter.png"
                     alt="Animal Shelter"
                     draggable="false"
                   />
@@ -123,7 +123,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/pin.png"
+                    src="/assets/images/pin.png"
                     alt="Pin"
                     draggable="false"
                   />
@@ -157,7 +157,7 @@
             </div>
             <figure class="adjust-image">
               <img
-                src="assets/images/banerdog.png"
+                src="/assets/images/banerdog.png"
                 alt="Kathy Lewis Baby"
                 class="mw-100"
                 draggable="false"
@@ -168,7 +168,7 @@
             <div class="feature-header d-flex align-items-center gap-15">
               <h3 class="f-22">Kathy Lewis Baby</h3>
               <img
-                src="assets/images/gender-female.png"
+                src="/assets/images/gender-female.png"
                 alt="icon"
                 draggable="false"
                 class="mw-100"
@@ -178,7 +178,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/animal-shelter.png"
+                    src="/assets/images/animal-shelter.png"
                     alt="Animal Shelter"
                     draggable="false"
                   />
@@ -190,7 +190,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/pin.png"
+                    src="/assets/images/pin.png"
                     alt="Pin"
                     draggable="false"
                   />
@@ -224,7 +224,7 @@
             </div>
             <figure class="adjust-image">
               <img
-                src="assets/images/banerdog.png"
+                src="/assets/images/banerdog.png"
                 alt="Kathy Lewis Baby"
                 class="mw-100"
                 draggable="false"
@@ -235,7 +235,7 @@
             <div class="feature-header d-flex align-items-center gap-15">
               <h3 class="f-22">Kathy Lewis Baby</h3>
               <img
-                src="assets/images/gender-female.png"
+                src="/assets/images/gender-female.png"
                 alt="icon"
                 draggable="false"
                 class="mw-100"
@@ -245,7 +245,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/animal-shelter.png"
+                    src="/assets/images/animal-shelter.png"
                     alt="Animal Shelter"
                     draggable="false"
                   />
@@ -257,7 +257,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/pin.png"
+                    src="/assets/images/pin.png"
                     alt="Pin"
                     draggable="false"
                   />
@@ -291,7 +291,7 @@
             </div>
             <figure class="adjust-image">
               <img
-                src="assets/images/banerdog.png"
+                src="/assets/images/banerdog.png"
                 alt="Kathy Lewis Baby"
                 class="mw-100"
                 draggable="false"
@@ -302,7 +302,7 @@
             <div class="feature-header d-flex align-items-center gap-15">
               <h3 class="f-22">Kathy Lewis Baby</h3>
               <img
-                src="assets/images/gender-female.png"
+                src="/assets/images/gender-female.png"
                 alt="icon"
                 draggable="false"
                 class="mw-100"
@@ -312,7 +312,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/animal-shelter.png"
+                    src="/assets/images/animal-shelter.png"
                     alt="Animal Shelter"
                     draggable="false"
                   />
@@ -324,7 +324,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/pin.png"
+                    src="/assets/images/pin.png"
                     alt="Pin"
                     draggable="false"
                   />
@@ -358,7 +358,7 @@
             </div>
             <figure class="adjust-image">
               <img
-                src="assets/images/banerdog.png"
+                src="/assets/images/banerdog.png"
                 alt="Kathy Lewis Baby"
                 class="mw-100"
                 draggable="false"
@@ -369,7 +369,7 @@
             <div class="feature-header d-flex align-items-center gap-15">
               <h3 class="f-22">Kathy Lewis Baby</h3>
               <img
-                src="assets/images/gender-female.png"
+                src="/assets/images/gender-female.png"
                 alt="icon"
                 draggable="false"
                 class="mw-100"
@@ -379,7 +379,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/animal-shelter.png"
+                    src="/assets/images/animal-shelter.png"
                     alt="Animal Shelter"
                     draggable="false"
                   />
@@ -391,7 +391,7 @@
               <div class="d-flex gap-15">
                 <div class="icon-box flex-shrink-0">
                   <img
-                    src="assets/images/pin.png"
+                    src="/assets/images/pin.png"
                     alt="Pin"
                     draggable="false"
                   />

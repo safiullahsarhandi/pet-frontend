@@ -42,7 +42,7 @@
               <div class="facebook">
                 <a href="#">
                   <img
-                    src="../assets/images/facebook.png"
+                    src="/assets/images/facebook.png"
                     alt="Facebook"
                     class="mw-100"
                     draggable="false"
@@ -52,7 +52,7 @@
               <div class="twitter">
                 <a href="#">
                   <img
-                    src="../assets/images/twitter.png"
+                    src="/assets/images/twitter.png"
                     alt="Twitter"
                     class="mw-100"
                     draggable="false"
@@ -62,7 +62,7 @@
               <div class="linkedin">
                 <a href="#">
                   <img
-                    src="../assets/images/linkedin.png"
+                    src="/assets/images/linkedin.png"
                     alt="Linkedin"
                     class="mw-100"
                     draggable="false"

@@ -33,7 +33,30 @@ jQuery('.slider-nav').slick({
 	
 
 
-
+jQuery(".regular").slick({
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    autoplay: true,
+    prevArrow: false,
+    nextArrow: false,
+    responsive: [
+        {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+            }
+        },
+        {
+          breakpoint: 540,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          }
+        }
+      ]
+  });
 
 
   jQuery('.center').slick({
@@ -84,6 +107,58 @@ inputElements.forEach((ele, index) => {
   })
 });
 
+// show advance filter 
+
+jQuery('.advanceFilter').click(function(){
+  jQuery('.advance-filter-option').show();
+});
+
+
+// custom upload button  
+jQuery('.uploadBtn button').click(function(){
+  jQuery('input#upload').trigger('click');
+})
+
+// upload images show 
+
+jQuery(function() {
+  var imagesPreview = function(input, placeToInsertImagePreview) {
+
+      if (input.files) {
+          var filesAmount = input.files.length;
+
+          for (i = 0; i < filesAmount; i++) {
+              var reader = new FileReader();
+
+              reader.onload = function(event) {
+                  jQuery(jQuery.parseHTML('<img draggable="false">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+              }
+
+              reader.readAsDataURL(input.files[i]);
+          }
+      }
+
+  };
+
+  jQuery('#upload').on('change', function() {
+      imagesPreview(this, 'div.gallery');
+  });
+});
+
+
+// quantity selector 
+
+jQuery('.quantity-left-minus').click(function () {
+  var getQuantity = jQuery(this).next('input[type="number"]').val();
+  if (getQuantity > 1) {
+    jQuery(this).next('input[type="number"]').val(getQuantity - 1);
+  }
+});
+
+jQuery('.quantity-right-plus').click(function () {
+  var getQuantity = parseInt(jQuery(this).prev('input[type="number"]').val());
+  jQuery(this).prev('input[type="number"]').val(getQuantity + 1);
+});
 
 // remove cart items 
 
@@ -91,6 +166,33 @@ jQuery('.removeProduct').click(function(){
   jQuery(this).parents('tr').remove();
 })
 
+// // #zip code 
+
+// jQuery('#zip').keyup(function(){
+//   var address = jQuery(this).val();
+//   if(address) {
+//       jQuery(this).parents('form').find('#continue').show();
+//   } else {
+//       jQuery(this).parents('form').find('#continue').hide();
+//   }
+// });
+
+
+jQuery('.showFileds').click(function(){
+  jQuery(this).parents('.wizard').hide();
+  jQuery(this).parents('.delivery-details').find('.showBox').show();
+  jQuery(this).parents('.delivery-details').find('.editBtn').show();
+});
+
+jQuery('.editBtn').click(function() {
+  jQuery(this).parents('.delivery-details').find('.wizard').show();
+  jQuery(this).parents('.delivery-details').find('.showBox').hide();
+  jQuery(this).hide();
+});
+
+jQuery('form > div:nth-child(3) .showFileds').click(function(){
+  jQuery('.submitButn').show();
+});
 
 // adopted btn 
 

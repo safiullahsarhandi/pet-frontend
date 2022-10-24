@@ -9,20 +9,20 @@
                 <p class="ls-2">Search adoptable pets from shelters, rescues & private owners.</p>
                 <div class="d-flex gap-15">
                     <a href="#">
-                        <img src="assets/images/google.png" draggable="false" class="mw-100">
+                        <img src="/assets/images/google.png" draggable="false" class="mw-100">
                     </a>
                     <a href="#">
-                        <img src="assets/images/app.png" draggable="false" class="mw-100">
+                        <img src="/assets/images/app.png" draggable="false" class="mw-100">
                     </a>
                 </div>
             </div>
             <div class="col-md-5">
                 <div class="appImage position-relative d-flex align-items-center position-relative">
                     <div class="front-image">
-                        <img src="assets/images/mfront.png" alt="First Image" draggable="false">
+                        <img src="/assets/images/mfront.png" alt="First Image" draggable="false">
                     </div>
                     <div class="back-image">
-                        <img src="assets/images/mback.png" alt="Second Image" draggable="false">
+                        <img src="/assets/images/mback.png" alt="Second Image" draggable="false">
                     </div>
                 </div>
             </div>

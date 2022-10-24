@@ -12,7 +12,7 @@
                             <div class="notification-content">
                                 <div class="d-flex gap-15 align-items-center flex-wrap">
                                     <div class="notification-image">
-                                        <img src="../assets/images/user-icon.png" alt="Person" draggable="false" class="mw-100">
+                                        <img src="/assets/images/user-icon.png" alt="Person" draggable="false" class="mw-100">
                                     </div>
                                     <div class="notification-block">
                                         <div class="text">
@@ -41,7 +41,7 @@
                             <div class="notification-content">
                                 <div class="d-flex gap-15 align-items-center flex-wrap">
                                     <div class="notification-image">
-                                        <img src="../assets/images/user-icon.png" alt="Person" draggable="false" class="mw-100">
+                                        <img src="/assets/images/user-icon.png" alt="Person" draggable="false" class="mw-100">
                                     </div>
                                     <div class="notification-block">
                                         <div class="text">
@@ -70,7 +70,7 @@
                             <div class="notification-content">
                                 <div class="d-flex gap-15 align-items-center flex-wrap">
                                     <div class="notification-image">
-                                        <img src="../assets/images/user-icon.png" alt="Person" draggable="false" class="mw-100">
+                                        <img src="/assets/images/user-icon.png" alt="Person" draggable="false" class="mw-100">
                                     </div>
                                     <div class="notification-block">
                                         <div class="text">
@@ -99,7 +99,7 @@
                             <div class="notification-content">
                                 <div class="d-flex gap-15 align-items-center flex-wrap">
                                     <div class="notification-image">
-                                        <img src="../assets/images/user-icon.png" alt="Person" draggable="false" class="mw-100">
+                                        <img src="/assets/images/user-icon.png" alt="Person" draggable="false" class="mw-100">
                                     </div>
                                     <div class="notification-block">
                                         <div class="text">
@@ -128,7 +128,7 @@
                             <div class="notification-content">
                                 <div class="d-flex gap-15 align-items-center flex-wrap">
                                     <div class="notification-image">
-                                        <img src="../assets/images/user-icon.png" alt="Person" draggable="false" class="mw-100">
+                                        <img src="/assets/images/user-icon.png" alt="Person" draggable="false" class="mw-100">
                                     </div>
                                     <div class="notification-block">
                                         <div class="text">

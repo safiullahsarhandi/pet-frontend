@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-banner">
-                    <img src="../assets/images/termBanner.png" alt="Terms & Conditions" class="mw-100" draggable="false">
+                    <img src="/assets/images/termBanner.png" alt="Terms & Conditions" class="mw-100" draggable="false">
                 </div>
                 <div class="form-head my-4">
                     <h3>Terms & Conditions</h3>
