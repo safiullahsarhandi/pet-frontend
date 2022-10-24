@@ -4,9 +4,8 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "preview": "cross-env HOST=custom-dev.onlinetestingserver.com PORT=5050 node .output/server/index.mjs"
+    "preview": "cross-env HOST=custom-dev.onlinetestingserver.com PORT=3000 node .output/server/index.mjs",
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "nuxt": "3.0.0-rc.11"
@@ -30,7 +29,8 @@
     "sass": "^1.55.0",
     "sass-loader": "^13.1.0",
     "vee-validate": "^4.6.10",
-    "vue-toast-notification": "3.0",
+    "vue-toast-notification": "^3.0.4",
+    "vue-toastification": "^2.0.0-rc.5",
     "vue3-carousel": "^0.2.0",
     "vue3-simple-typeahead": "^1.0.11",
     "vue3-star-ratings": "^1.1.0",

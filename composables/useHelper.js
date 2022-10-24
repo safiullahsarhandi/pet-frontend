@@ -1,8 +1,8 @@
-import { useToast } from 'vue-toast-notification/dist/index.js';
+import { useToast } from "vue-toastification";
 import moment from 'moment';
 export const useHelper = () => {
   let toast = useToast();
-
+      
   const buildFormData = (formData, data, parentKey) => {
 
     if (data && typeof data === 'object' && !(data instanceof Date) && !(data instanceof File)) {
@@ -11,10 +11,10 @@ export const useHelper = () => {
       });
     } else {
       const value = data == null ? '' : data;
-
+      
       formData.append(parentKey, value);
     }
-
+    
   }
 
   const setAccessToken = (token) => localStorage.setItem('u_token', token);
@@ -22,11 +22,11 @@ export const useHelper = () => {
   const removeAccessToken = () => localStorage.removeItem('u_token');
   const format_date = (date, format = "LL") => moment(date).format(format);
   const format_number = (x) => x?.toString()?.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-
+  
   const notification = (message, type = 'success') => {
     toast[type](message);
   };
-
+  
   const switchType = (e, refKey) => {
     let field = document.querySelector(refKey);
     console.log(field);
