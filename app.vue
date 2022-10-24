@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <NuxtPage :page-key="route.fullPath" :key="$route.fullPath" />
+    <NuxtPage :key="route.fullPath" />
     <client-only>
         <popup-confirm
         :active="confirmPopupParams?.visibility"
