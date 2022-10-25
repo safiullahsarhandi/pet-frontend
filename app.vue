@@ -100,7 +100,7 @@ useHead({
   script: [
     { src: "/assets/js/jquery.slim.min.js" },
     { src: "/assets/js/popper.min.js" },
-    { src: "/assets/js/bootstrap.bundle.min.js" },
+    // { src: "/assets/js/bootstrap.bundle.min.js" },
     { src: "/assets/js/slick.js" },
     { src: "/assets/js/main.js", defer: true, async: true },
   ],
