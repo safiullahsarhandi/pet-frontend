@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <NuxtPage :key="route.fullPath" />
+    <NuxtPage :page-key="route.fullPath" />
     <client-only>
         <popup-confirm
         :active="confirmPopupParams?.visibility"
@@ -109,5 +109,8 @@ useHead({
 <style scoped>
 html {
   scroll-behavior: smooth; /* set scroll-behaviour to smooth here */
+}
+.listing-page {
+    padding-top: 140px !important;
 }
 </style>

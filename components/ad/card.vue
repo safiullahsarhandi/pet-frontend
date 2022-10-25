@@ -107,7 +107,7 @@ const props = defineProps({
         default : null,
     },
     price : {
-        type : String,
+        type : [String,Number],
         default : null,
     },
     phone : {

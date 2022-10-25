@@ -33,7 +33,7 @@
                         <no-record :data="data.data">0 Pets Found</no-record>
                     </div>
                 </div>
-               <pagination :show-detail="true" :data="data" />
+               <layout-pagination :show-detail="true" :data="data" />
             </div>
         </div>
     </div>

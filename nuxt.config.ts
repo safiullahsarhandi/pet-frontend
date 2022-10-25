@@ -1,6 +1,9 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
     ssr : false,
+    app : {        
+        buildAssetsDir : "/dale-pet-frontend/dist/_nuxt/",
+    },
     css : [
         'vue-toastification/dist/index.css',
         'vue3-tel-input/dist/vue3-tel-input.css',
@@ -11,9 +14,9 @@ export default defineNuxtConfig({
     modules : [
         '@pinia/nuxt',
     ],
-    build : {
+    build : { 
         transpile: ['vue-toastification']
-     },
+    },
     vite: {
         optimizeDeps: {
             include: [
