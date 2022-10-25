@@ -216,17 +216,17 @@
             </div>
         </div>
         <client-only>
-        <popup-creator
-            :additional-fields="{reportable_id : data?.id,reportable_type : 'order'}"
-            :title="popupParams.title"
-            :active="popupParams.active"
-            :fields="popupParams.fields"
-            :api-url="popupParams.apiUrl"
-            :validation-schema="popupParams.schema"
-            :data="popupParams.data"
-            @closed="hidePopup"
-            submit-btn-text="Report"
-            :show-icon="true"
+            <popup-creator
+                :additional-fields="{reportable_id : data?.id,reportable_type : 'order'}"
+                :title="popupParams.title"
+                :active="popupParams.active"
+                :fields="popupParams.fields"
+                :api-url="popupParams.apiUrl"
+                :validation-schema="popupParams.schema"
+                :data="popupParams.data"
+                @closed="hidePopup"
+                submit-btn-text="Report"
+                :show-icon="true"
             ></popup-creator>
         </client-only>
     </div>

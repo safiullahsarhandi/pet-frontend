@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-md-9">
           <div class="cart-detail shadow p-3 h-100">
-            <order-detail-products :products="data?.products"/>
+            <order-detail-products @on-review="fetch" :is-delivered="data?.status == 'delivered'" :products="data?.products"/>
             <!-- total  -->
             <order-detail-summary 
             :products="data?.products" 
@@ -84,7 +84,7 @@
 import * as yup from 'yup';
 import { getOrder } from "~~/services/order";
 const route = useRoute();
-const {data} = useApi(()=> getOrder(route.params.id));
+const {fetch,data} = useApi(()=> getOrder(route.params.id));
 const {format_date} = useHelper();
 const {
   showCreatorPopup,

@@ -25,15 +25,20 @@
             <img src="/assets/images/popup-header.png" alt="Login" draggable="false" class="mw-100 mb-4"/>
           </div>
           <h4 class="mb-3 text-center">{{title}}</h4>
-          <Form :initial-values="{...data}" ref="form" @submit="onSubmit" :validation-schema="validationSchema">
+          <Form v-slot="{setFieldValue}" :initial-values="{...data}" ref="form" @submit="onSubmit" :validation-schema="validationSchema">
             <div :key="fieldIndex" v-for="(field, fieldIndex) in fields" class="form-group">
               <label for="password">
                 {{ field.label }}
               </label>
-              <Field :name="field.name" v-slot="{field}" v-if="field.type == 'textarea'">
-                  <textarea rows="8"  class="w-100 primTextArea" v-bind="field" :placeholder="field.placeholder"></textarea>
+              <div v-if="field?.component" v-bind="field?.attrs" >
+                <Field :name="field?.name" as="div">
+                  <component :key="fieldIndex" v-on:[field?.event]="setFieldValue(field?.name,$event)"  v-bind="field?.componentProps" :is="field.component"></component>
+                </Field>
+              </div>
+              <Field :name="field?.name" v-slot="{field}" v-else-if="field?.type == 'textarea'">
+                  <textarea  rows="8"  class="form-control bg-light rounded-10" v-bind="field" :placeholder="field.placeholder"></textarea>
               </Field>
-              <div v-else-if="field.type == 'password'" class="password-box">
+              <div v-else-if="field?.type == 'password'" class="password-box">
                 <Field
                   :type="field.type"
                   :name="field.name"
@@ -51,7 +56,7 @@
                 class="form-control rounded-pill"
                 :id="field.id || `field${fieldIndex}`"
                 />
-                <ErrorMessage :name="field.name"></ErrorMessage>
+                <ErrorMessage :name="field?.name"></ErrorMessage>
             </div>
             <div class="loginBtn text-center my-4">
               <button
@@ -117,6 +122,8 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["closed"]);
+
+const apiCalled = ref(false);
 const toggleModal = (value) => {
   const creatorModal = Modal.getOrCreateInstance(
     document.getElementById("creator-popup")
@@ -131,10 +138,11 @@ const toggleModal = (value) => {
 // don't remove backdrop which cause overlay
 
 const handleModalHide = function (event) {
-  emit("closed");
+  emit("closed",apiCalled.value);
   document
     .querySelectorAll(".modal-backdrop.show")
     .forEach((el) => el.remove());
+    apiCalled.value = false;
 };
 // listeners registeration for popup hide
 const registerListener = () => {
@@ -166,7 +174,6 @@ watch(
 );
 
 const onSubmit = async (values) => {
-  console.log(props.additionalFields);
   try {
     let { message } = await create(props.apiUrl, {
       ...values,
@@ -174,6 +181,7 @@ const onSubmit = async (values) => {
     });
     notification(message);
     toggleModal(false);
+    apiCalled.value = true;
   } catch (error) {
     let { errors, message } = error?.response?.data;
     notification(message,'error');
@@ -181,5 +189,9 @@ const onSubmit = async (values) => {
       form.value.setErrors(errors);
     }
   }
+};
+const showTest = (fieldValue,fieldRef)=> {
+  // fieldRef.value = fieldValue
+    console.log();
 };
 </script>

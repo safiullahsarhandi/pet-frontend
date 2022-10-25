@@ -1,6 +1,8 @@
 <template>    
     <section class="listing-page py-5">
-        <component :is="component[type]" /> 
+        <client-only>
+            <component :is="component[type]" /> 
+        </client-only>
     </section>
 </template>
 <script setup>
