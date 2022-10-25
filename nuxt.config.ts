@@ -1,5 +1,6 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+    ssr : false,
     css : [
         'vue-toastification/dist/index.css',
         'vue3-tel-input/dist/vue3-tel-input.css',
