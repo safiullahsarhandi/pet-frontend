@@ -1,5 +1,13 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+    /* loading : {
+
+    }, */
+    runtimeConfig : {
+        public: {
+            api_url: process.env.API_URL
+        },
+    },
     app : {        
         buildAssetsDir : "/_nuxt/",
     },
@@ -21,6 +29,7 @@ export default defineNuxtConfig({
             include: [
                 "@fawmi/vue-google-maps",
                 "fast-deep-equal",
+                'vue3-tel-input',
               ],
         }
     }

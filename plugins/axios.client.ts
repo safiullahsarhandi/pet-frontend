@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { useHelper } from '~~/composables/useHelper';
-axios.defaults.baseURL = `http://localhost/dale-pet/api`;
-
 export default defineNuxtPlugin((nuxtApp) => {
-    const {getAccessToken,removeAccessToken} = useHelper();
+    
+let {api_url} = nuxtApp.$config.public;
+const {getAccessToken,removeAccessToken} = useHelper();
+axios.defaults.baseURL = api_url;
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 if(getAccessToken())
     axios.defaults.headers.common['Authorization'] = `Bearer ${getAccessToken()}`;
