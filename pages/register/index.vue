@@ -48,16 +48,18 @@
                       <label for="phone">
                         Phone Number <span class="required">*</span>
                       </label>
-                      <Field
-                        name="phone"
-                        type="number"
-                        placeholder="Enter Phone Number"
-                        class="form-control rounded-pill"
-                        id="phone"
-                        v-slot="{field}"
-                      >
-                      <vue-tel-input v-bind="field"  @country-changed="getPhoneData" defaultCountry="US" ref="phoneInput" :key="refreshPhoneInput" mode="international"></vue-tel-input>
-                      </Field>
+                      <client-only>
+                        <Field
+                          name="phone"
+                          type="number"
+                          placeholder="Enter Phone Number"
+                          class="form-control rounded-pill"
+                          id="phone"
+                          v-slot="{field}"
+                        >
+                        <vue-tel-input v-bind="field"  @country-changed="getPhoneData" defaultCountry="US" ref="phoneInput" :key="refreshPhoneInput" mode="international"></vue-tel-input>
+                        </Field>
+                      </client-only>
                       <!-- <Field
                       /> -->
                       <error-message name="phone" />

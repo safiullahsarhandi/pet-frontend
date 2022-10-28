@@ -59,17 +59,19 @@
                       <label for="phone">
                         Phone Number <span class="required">*</span>
                       </label>
-                      <Field
-                        name="phone_number"
-                        type="number"
-                        placeholder="Enter Phone Number"
-                        class="form-control rounded-pill"
-                        id="phone"
-                        v-model="user.phone_number"
-                        v-slot="{field}"
-                      >
-                        <vue-tel-input v-bind="field" ref="phoneInput" :key="refreshPhoneInput" defaultCountry="US"  @country-changed="getPhoneData" mode="international"></vue-tel-input>
-                      </Field>
+                      <client-only>
+                        <Field
+                          name="phone_number"
+                          type="number"
+                          placeholder="Enter Phone Number"
+                          class="form-control rounded-pill"
+                          id="phone"
+                          v-model="user.phone_number"
+                          v-slot="{field}"
+                        >
+                          <vue-tel-input v-bind="field" ref="phoneInput" :key="refreshPhoneInput" defaultCountry="US"  @country-changed="getPhoneData" mode="international"></vue-tel-input>
+                        </Field>
+                      </client-only>
                     </div>
                   </div>
                   <div class="col-md-6">
