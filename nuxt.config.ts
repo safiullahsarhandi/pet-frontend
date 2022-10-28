@@ -3,6 +3,9 @@ export default defineNuxtConfig({
     /* loading : {
 
     }, */
+    routeRules: {
+        '/api/**': { cors: true },
+    },
     runtimeConfig : {
         public: {
             api_url: process.env.API_URL
