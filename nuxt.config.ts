@@ -25,7 +25,7 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
     ],
     build : { 
-        transpile: ['vue-toastification']
+        transpile: ['vue-toastification','vue3-tel-input']
     },
     vite: {
         optimizeDeps: {
