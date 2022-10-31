@@ -235,7 +235,7 @@ const tempraments = computed(()=> {
 
 const trainings = computed(()=> {
     let values =  data?.value?.behaviours?.filter((item)=>item?.pivot?.type == 'trainings');
-    values = values?.map((item)=> item.name);
+    return values?.map((item)=> item.name);
 });
 const owner = computed(()=> data.value.owner);
 
