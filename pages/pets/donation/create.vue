@@ -91,14 +91,14 @@
                       <label for="group"> Group </label>
                       <Field
                         as="select"
-                        name="group"
+                        name="group_id"
                         id="group"
                         class="form-control bg-light rounded-pill"
                       >
                         <option value="">Select</option>
                         <option :key="groupIndex" v-for='(group,groupIndex) in data?.groups' :value="group?.id">{{group?.name}}</option>
                     </Field>
-                    <error-message name='group'/>
+                    <error-message name='group_id'/>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -238,7 +238,7 @@ const schema = yup.object().shape({
   name : yup.string().required(),
   category_id : yup.string().required().label('category'),
   breed_id : yup.string().required().label('breed'),
-  group : yup.string().required(),
+  group_id : yup.string().required().label('group'),
   color : yup.string().required(),
   description : yup.string().required(),
   gender : yup.string().required(),
@@ -249,7 +249,7 @@ const schema = yup.object().shape({
     return value?.filter(Boolean);
   })
   .test('array','trainings are required',arrayValidator),
-  images : yup.array().of(yup.mixed().required('images are required')).test('validateArray','images are required',arrayValidator),
+  images : `yup.array().of(yup.mixed().required('images are required')).test('validateArray','images are required',arrayValidator),`
 });
 const tempraments = computed(()=> {
   let values = data.value?.behaviours?data.value?.behaviours[0]:[];
