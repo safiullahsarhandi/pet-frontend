@@ -249,7 +249,7 @@ const schema = yup.object().shape({
     return value?.filter(Boolean);
   })
   .test('array','trainings are required',arrayValidator),
-  images : `yup.array().of(yup.mixed().required('images are required')).test('validateArray','images are required',arrayValidator),`
+  images : yup.array().of(yup.mixed().required('images are required')).test('validateArray','images are required',arrayValidator),
 });
 const tempraments = computed(()=> {
   let values = data.value?.behaviours?data.value?.behaviours[0]:[];
