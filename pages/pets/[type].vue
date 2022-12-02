@@ -126,7 +126,7 @@ onBeforeMount(()=> {
     filterValues.value = {...filterValues.value,...route.query};
     if(store.categories.length == 0){
         
-        store.get({type : ['pet']});
+        store.get({type : ['pet','other_pet']});
     }
 });
 </script>
